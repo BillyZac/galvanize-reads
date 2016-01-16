@@ -4,7 +4,11 @@ var router = express.Router();
 var fetchBooks = require('../modules/fetch-books')
 
 router.get('/', function(req, res) {
-    res.send(fetchBooks.toString());
+    res.render('books', {
+      title: "Galvanize Reads",
+      books: fetchBooks
+    }
+  );
 });
 
 router.post('/new', function(req, res) {
