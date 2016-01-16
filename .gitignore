@@ -3,3 +3,4 @@ public/components
 .sass-cachepublic/
 public
 .DS_Store
+.env
