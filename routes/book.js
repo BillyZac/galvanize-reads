@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var fetchBooks = require('../modules/fetch-books')
+
 router.get('/', function(req, res) {
-    res.send('READ all items');
+    res.send(fetchBooks.toString());
 });
 
 router.post('/new', function(req, res) {
