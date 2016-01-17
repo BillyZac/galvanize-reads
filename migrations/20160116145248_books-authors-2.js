@@ -3,8 +3,8 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.string('title')
     table.string('genre')
-    table.string('description')
-    table.string('cover_url')
+    table.text('description')
+    table.text('cover_url')
   })
   .then(function() {
     return knex.schema.createTable('authors', function(table) {
@@ -12,8 +12,8 @@ exports.up = function(knex, Promise) {
       table.integer('book_id').unsigned().references('id').inTable('books').onDelete('cascade')
       table.string('first_name')
       table.string('last_name')
-      table.string('biography')
-      table.string('portrait_url')
+      table.text('biography')
+      table.text('portrait_url')
     })
   })
 }
