@@ -9,12 +9,18 @@ function Books() {
 var fetchBooks = require('../modules/fetch-books')
 
 router.get('/', function(req, res) {
+  var host = process.env.HOST || 'http://localhost:5000'
+  var links = {
+    authors: host + '/authors',
+    books:   host + '/books'
+  }
   Books().select().then(function(books) {
     var length = books.length
     console.log('The books array item 0: ', books[0])
     res.render('books', {
       title: "Galvanize Reads",
-      books: books
+      books: books,
+      links: links
     })
   })
 

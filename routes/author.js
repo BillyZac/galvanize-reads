@@ -9,12 +9,18 @@ function Authors() {
 
 
 router.get('/', function(req, res) {
+  var host = process.env.HOST || 'http://localhost:5000'
+  var links = {
+    authors: host + '/authors',
+    books:   host + '/books'
+  }
   Authors().select().then(function(authors) {
     var length = authors.length
     console.log('The authors array item 0: ', authors[0])
     res.render('authors', {
       title: "Galvanize Reads",
-      authors: authors
+      authors: authors,
+      links: links
     })
   })
 
