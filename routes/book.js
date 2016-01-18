@@ -10,7 +10,7 @@ var fetchBooks = require('../modules/fetch-books')
 
 router.get('/', function(req, res) {
   Books().select().then(function(books) {
-    console.log('This is the first book =============', books[0])
+    console.log('This is the last book =============', books[length-1])
     // res.send('okay.')
     var length = books.length
     console.log(books[0].title)
@@ -22,18 +22,16 @@ router.get('/', function(req, res) {
 
 })
 
-router.post('/new', function(req, res) {
-  var data = req.body
-  var response = ''
-  for (item in data) {
-    response += item,
-    response += ': '
-    response += data[item]
-    response += ', '
-  }
-  console.log(data)
-  res.send('CREATE a new item with this data: ' + response);
-});
+router.post('/', function(req, res) {
+  Books().insert({
+    title: req.body.title,
+    genre: req.body.genre,
+    description: req.body.description,
+    cover_url: req.body.cover_url
+  }, 'id').then(function(result) {
+    res.send('Created new book with id ' + result)
+  })
+})
 
 router.get('/:id', function(req, res) {
     var id = req.params.id
