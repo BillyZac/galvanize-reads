@@ -57,6 +57,7 @@ function handleViewAuthor() {
   $('.view-author').click(function() {
     var authorId = $(this).data('id')
     console.log('Clicked view author link. id: ' + authorId)
+    console.log('URL for author view: ', getAPIHost() + '/authors/' + authorId)
     window.location = getAPIHost() + '/authors/' + authorId
   })
 }

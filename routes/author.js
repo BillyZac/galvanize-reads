@@ -33,21 +33,13 @@ router.post('/', function(req, res) {
 })
 
 router.get('/:id', function(req, res) {
-    var id = req.params.id
-
+  var id = req.params.id
     Authors().select().where('id', id).then(function(results) {
       var author = results[0]
-      if (author) {
-        res.render('author', {
-          title: "Galvanize Reads",
-          author: author
-        })
-      } else {
-        res.render('error', {
-          message: 'No such author.',
-          status: 404
-        })
-      }
+      res.render('author', {
+        title: 'Galvanize Reads',
+        author: author
+      })
     })
 })
 
