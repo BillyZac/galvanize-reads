@@ -1,6 +1,12 @@
+* {
+  // outline: aqua dotted 2px;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -16,4 +22,18 @@ header {
   .logo {
     margin-right: 30px;
   }
+}
+
+.left-sidebar {
+
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+nav {
+  color: #fff;
+  background: #333;
 }
