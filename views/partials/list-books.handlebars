@@ -8,7 +8,9 @@
   <ul>
   {{#books}}
   <li class="book" id=book-{{id}}>
-    {{id}}   {{title}} <button class="delete" data-id="{{id}}" type="button" name="delete">Delete</button>
+    {{id}}   {{title}}
+    <button class="view-link" data-id="{{id}}" type="button" name="view-link">View book</button>
+    <button class="delete" data-id="{{id}}" type="button" name="delete">Delete</button>
   </li>
   {{/books}}
   </ul>
