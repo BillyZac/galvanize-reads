@@ -46,10 +46,13 @@ router.get('/:id', function(req, res) {
           book: book
         })
       } else {
-        res.send('No such book.');
+        res.render('error', {
+          message: 'No such book.',
+          status: 404
+        })
       }
     })
-});
+})
 
 router.put('/:id', function (req, res){
   var id = req.params.id
