@@ -11,7 +11,7 @@ var fetchBooks = require('../modules/fetch-books')
 router.get('/', function(req, res) {
   Books().select().then(function(books) {
     var length = books.length
-    console.log(books[0].title)
+    console.log('The books array item 0: ', books[0])
     res.render('books', {
       title: "Galvanize Reads",
       books: books

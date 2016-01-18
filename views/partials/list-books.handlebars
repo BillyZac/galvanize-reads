@@ -1,7 +1,15 @@
-<ul>
-{{#books}}
-<li class="book" id=book-{{id}}>
-  {{id}}   {{title}} <button class="delete" data-id="{{id}}" type="button" name="delete">Delete</button>
-</li>
-{{/books}}
-</ul>
+{{#unless books}}
+  <p>
+    There are no books to display.
+  </p>
+{{/unless}}
+
+{{#if books}}
+  <ul>
+  {{#books}}
+  <li class="book" id=book-{{id}}>
+    {{id}}   {{title}} <button class="delete" data-id="{{id}}" type="button" name="delete">Delete</button>
+  </li>
+  {{/books}}
+  </ul>
+{{/if}}
