@@ -9,15 +9,16 @@ function Books() {
 var fetchBooks = require('../modules/fetch-books')
 
 router.get('/', function(req, res) {
-  res.send('okay!')
-  // Books().select().then(function(books) {
-  //   var length = books.length
-  //   console.log(books[0].title)
-  //   res.render('books', {
-  //     title: "Galvanize Reads",
-  //     books: books
-  //   })
-  // })
+  Books().select().then(function(books) {
+    console.log('This is the first book =============', books[0])
+    res.send('okay.')
+    // var length = books.length
+    // console.log(books[0].title)
+    // res.render('books', {
+    //   title: "Galvanize Reads",
+    //   books: books
+    // })
+  })
 
 })
 
