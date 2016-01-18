@@ -52,17 +52,35 @@ router.get('/:id', function(req, res) {
 })
 
 router.put('/:id', function (req, res){
-  console.log('req.body', req.body)
+  var data = req.body
   var id = req.params.id
-  Books().where('id', id).update({
-    title: req.body.title,
-    genre: req.body.genre,
-    description: req.body.description,
-    cover_url: req.body.cover_url
-  }).then(function(result){
-    res.send('UPDATED item ' + id);
-  })
+
+  if (formValid(data)) {
+    Books().where('id', id).update({
+      title: data.title,
+      genre: data.genre,
+      description: data.description,
+      cover_url: data.cover_url
+    }).then(function(result){
+      res.send('UPDATED item ' + id);
+    })
+  } else {
+    res.render('error', {
+        message: 'Form inputs cannot be blank.',
+        status: 400
+    })
+  }
 })
+
+function formValid(data) {
+  for (item in data) {
+    console.log(data[item])
+    if (data[item] === '') {
+      return false
+    }
+  }
+  return true
+}
 
 router.delete('/:id', function (req, res){
   var id = req.params.id
