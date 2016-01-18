@@ -63,11 +63,14 @@ function formValid(data) {
 
 function handleViewLink() {
   $('.view-link').click(function() {
+    console.log('Clicked view link.')
+    var bookId = $(this).data('id')
     window.location = getAPIHost() + '/books/' + bookId
-  }
+  })
 }
 
 $(function() {
   handleDeleteBook()
   handleEditBook()
+  handleViewLink()
 })
