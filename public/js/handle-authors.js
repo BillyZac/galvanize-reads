@@ -3,7 +3,10 @@ function handleAddAuthor() {
     console.log('clik!')
     var url = getAPIHost() + '/authors/'
     data = {
-      first_name: $('.first_name').val()
+      first_name:   $('.first_name').val(),
+      last_name:    $('.last_name').val(),
+      biography:    $('.biography').val(),
+      portrait_url: $('.portrait_url').val()
     }
     // console.log(data.first_name)
     $.ajax(url, {

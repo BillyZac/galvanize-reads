@@ -3,3 +3,4 @@ public/components
 .sass-cachepublic/
 .DS_Store
 .env
+query.js

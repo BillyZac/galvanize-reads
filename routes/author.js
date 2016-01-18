@@ -31,10 +31,23 @@ router.post('/', function(req, res) {
   console.log(data)
 
   Authors().insert({
-    first_name: data.first_name
-  }).then(function() {
+    first_name: data.first_name,
+    last_name:  data.last_name,
+    biography: data.biography,
+    portrait_url: data.portrait_url
+  })
+
+  // Authors().insert({
+  //   first_name:   'foo',
+  //   last_name:    'foo',
+  //   biography:    'foo',
+  //   portrait_url: 'foo'
+  // })
+
+  .then(function() {
     res.send('okie doke.')
   })
+
 })
 
 router.get('/:id', function(req, res) {
