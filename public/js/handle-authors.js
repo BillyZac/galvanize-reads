@@ -1,3 +1,18 @@
+function handleAddAuthor() {
+  $('.add-author').click(function() {
+    console.log('clik!')
+    var url = getAPIHost() + '/authors/'
+    data = {
+      first_name: $('.first_name').val()
+    }
+    // console.log(data.first_name)
+    $.ajax(url, {
+      method: 'post',
+      data: data
+    })
+  })
+}
+
 function handleDeleteAuthor() {
   $('.delete').click(function() {
     var authorId = $(this).data('id')
@@ -63,7 +78,8 @@ function handleViewAuthor() {
 }
 
 $(function() {
-  handleDeleteAuthor()
-  handleEditAuthor()
+  handleAddAuthor()
   handleViewAuthor()
+  handleEditAuthor()
+  handleDeleteAuthor()
 })

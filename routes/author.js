@@ -27,14 +27,13 @@ router.get('/', function(req, res) {
 })
 
 router.post('/', function(req, res) {
-  newBook = {
-    title: req.body.title,
-    genre: req.body.genre,
-    description: req.body.description,
-    cover_url: req.body.cover_url
-  }
-  Authors().insert(newBook, 'id').then(function(result) {
-    res.send('Created new author with id ' + result)
+  var data = req.body
+  console.log(data)
+
+  Authors().insert({
+    first_name: data.first_name
+  }).then(function() {
+    res.send('okie doke.')
   })
 })
 
