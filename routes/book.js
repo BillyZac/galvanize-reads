@@ -37,7 +37,18 @@ router.post('/new', function(req, res) {
 
 router.get('/:id', function(req, res) {
     var id = req.params.id
-    res.send('READ item ' + id);
+
+    Books().select().where('id', id).then(function(results) {
+      var book = results[0]
+      if (book) {
+        res.render('book', {
+          title: "Galvanize Reads",
+          book: book
+        })
+      } else {
+        res.send('No such book.');
+      }
+    })
 });
 
 router.put('/:id', function (req, res){
