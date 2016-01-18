@@ -29,7 +29,6 @@ router.post('/', function(req, res) {
     description: req.body.description,
     cover_url: req.body.cover_url
   }
-  console.log(newBook)
   Books().insert(newBook, 'id').then(function(result) {
     res.send('Created new book with id ' + result)
   })
@@ -61,7 +60,9 @@ router.put('/:id', function (req, res){
 
 router.delete('/:id', function (req, res){
   var id = req.params.id
-  res.send('DELETE item ' + id);
-});
+  Books().where('id', id).del().then(function(result) {
+    res.send('DELETED. The result: ' + result)
+  })
+})
 
 module.exports = router;
