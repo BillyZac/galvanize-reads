@@ -23,12 +23,14 @@ router.get('/', function(req, res) {
 })
 
 router.post('/', function(req, res) {
-  Books().insert({
+  newBook = {
     title: req.body.title,
     genre: req.body.genre,
     description: req.body.description,
     cover_url: req.body.cover_url
-  }, 'id').then(function(result) {
+  }
+  console.log(newBook)
+  Books().insert(newBook, 'id').then(function(result) {
     res.send('Created new book with id ' + result)
   })
 })
