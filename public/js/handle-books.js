@@ -17,7 +17,14 @@ function handleDeleteBook() {
   })
 }
 
+function handleEditBook() {
+  console.log('Ready to save edits.')
+  $('.save-edit').click(function() {
+    console.log('Saving the edit. Not really.')
+  })
+}
+
 $(function() {
-  console.log(getAPIHost())
   handleDeleteBook()
+  handleEditBook()
 })

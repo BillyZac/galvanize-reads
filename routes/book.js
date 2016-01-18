@@ -52,9 +52,14 @@ router.get('/:id', function(req, res) {
 })
 
 router.put('/:id', function (req, res){
+  console.log('req.body', req.body)
   var id = req.params.id
-  res.send('UPDATE item ' + id);
-});
+  Books().where('id', id).update({
+    title: req.body.title
+  }).then(function(result){
+    res.send('UPDATED item ' + id);
+  })
+})
 
 router.delete('/:id', function (req, res){
   var id = req.params.id
