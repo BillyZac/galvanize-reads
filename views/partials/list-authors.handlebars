@@ -1,0 +1,26 @@
+{{#unless authors}}
+  <p>
+    There are no authors to display.
+  </p>
+{{/unless}}
+
+{{#if authors}}
+  <ul>
+  {{#authors}}
+  <li class="author" id=author-{{id}}>
+    <div class="">
+      {{id}}
+    </div>
+    <p>
+      {{first_name}} {{last_name}}
+    </p>
+    <p>
+      {{ biography }}
+    </p>
+    <img src="{{ portrait_url }}" alt="{{first_name}} {{last_name}}" />
+    <button class="view-author" data-id="{{id}}" type="button" name="view-author">View author</button>
+    <button class="delete-author" data-id="{{id}}" type="button" name="delete">Delete</button>
+  </li>
+  {{/authors}}
+  </ul>
+{{/if}}
