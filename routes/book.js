@@ -1,14 +1,22 @@
 var express = require('express');
 var router = express.Router();
+var knex = require('../db/knex')
+
+function Books() {
+  return knex('books')
+}
 
 var fetchBooks = require('../modules/fetch-books')
 
 router.get('/', function(req, res) {
+  Books().select().then(function(books) {
+    var length = books.length
+    console.log(books[0].title)
     res.render('books', {
       title: "Galvanize Reads",
-      books: fetchBooks
-    }
-  );
+      books: books
+    })
+  })
 });
 
 router.post('/new', function(req, res) {
