@@ -10,8 +10,6 @@ var fetchBooks = require('../modules/fetch-books')
 
 router.get('/', function(req, res) {
   Books().select().then(function(books) {
-    console.log('This is the last book =============', books[length-1])
-    // res.send('okay.')
     var length = books.length
     console.log(books[0].title)
     res.render('books', {
