@@ -55,7 +55,10 @@ router.put('/:id', function (req, res){
   console.log('req.body', req.body)
   var id = req.params.id
   Books().where('id', id).update({
-    title: req.body.title
+    title: req.body.title,
+    genre: req.body.genre,
+    description: req.body.description,
+    cover_url: req.body.cover_url
   }).then(function(result){
     res.send('UPDATED item ' + id);
   })

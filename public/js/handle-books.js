@@ -23,11 +23,19 @@ function handleEditBook() {
     console.log('This is the book id: ' + bookId)
     // console.log('This is the book title: ' + $('.title').val())
     var data = {
-      title: $('.title').val()
+      title: $('.title').val(),
+      genre: $('.genre').val(),
+      description: $('.description').val(),
+      cover_url: $('.cover-url').val()
     }
 
     // console.log('Saving book with this id: ' + bookId)
-    console.log('Saving book with this data.title: ' + data.title)
+    console.log('Saving book with this data: \n' +
+      'Title: ' + data.title + '\n' +
+      'Description: ' + data.description + '\n' +
+      'Genre: ' + data.genre + '\n' +
+      'cover_url: ' + data.cover_url
+    )
     $.ajax(getAPIHost() + '/books/' + bookId, {
       method: 'put',
       data: data
