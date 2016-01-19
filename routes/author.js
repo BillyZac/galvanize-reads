@@ -6,8 +6,6 @@ function Authors() {
   return knex('authors')
 }
 
-
-
 router.get('/', function(req, res) {
   var host = process.env.HOST || 'http://localhost:5000'
   var links = {
@@ -22,7 +20,6 @@ router.get('/', function(req, res) {
       links: links
     })
   })
-
 })
 
 router.post('/', function(req, res) {
