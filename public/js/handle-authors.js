@@ -109,8 +109,11 @@ function validateURL(message) {
   var urlRegex = new RegExp(urlExpression);
   var url = $('.portrait_url').val()
   console.log('url: ' + url)
-  if ( !(url.match(urlRegex)) ) {
-    message.push('Please use a valid url.')
+
+  if (url != '') {
+    if ( !(url.match(urlRegex)) ) {
+      message.push('Please use a valid url.')
+    }
   }
   return message
 }
