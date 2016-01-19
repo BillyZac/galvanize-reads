@@ -30,22 +30,14 @@ router.post('/', function(req, res) {
   var data = req.body
   console.log(data)
 
+
   Authors().insert({
     first_name: data.first_name,
     last_name:  data.last_name,
     biography: data.biography,
     portrait_url: data.portrait_url
-  })
-
-  // Authors().insert({
-  //   first_name:   'foo',
-  //   last_name:    'foo',
-  //   biography:    'foo',
-  //   portrait_url: 'foo'
-  // })
-
-  .then(function() {
-    res.send('okie doke.')
+  }, 'id').then(function(id) {
+    res.send('Created a new author with id ' + id)
   })
 
 })

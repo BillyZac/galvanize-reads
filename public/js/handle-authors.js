@@ -71,6 +71,7 @@ function formValid(data) {
   return true
 }
 
+
 function handleViewAuthor() {
   $('.view-author').click(function() {
     var authorId = $(this).data('id')
@@ -80,9 +81,52 @@ function handleViewAuthor() {
   })
 }
 
+function handleFormValidation() {
+  $('input').blur(function() {
+    var message = []
+    validateName(message)
+    validateURL(message)
+    displayMessage(message)
+    console.log(message)
+  })
+}
+
+function validateName(message) {
+  var first_name = $('.first_name').val()
+  var last_name = $('.last_name').val()
+  if (
+    first_name == null || first_name == '' ||
+    last_name == null || last_name == ''
+  ) {
+    message.push('The name can\'t be blank.')
+  }
+  return message
+}
+
+function validateURL(message) {
+  // If the url is not blank, it must be a valid url.
+  var urlExpression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+  var urlRegex = new RegExp(urlExpression);
+  var url = $('.portrait_url').val()
+  console.log('url: ' + url)
+  if ( !(url.match(urlRegex)) ) {
+    message.push('Please use a valid url.')
+  }
+  return message
+}
+
+function displayMessage(message) {
+  $('.message').empty()
+  message.forEach(function(sentence) {
+    var sentenceHTML = '<p>' + sentence + '</p>'
+    $('.message').append(sentenceHTML)
+  })
+}
+
 $(function() {
   handleAddAuthor()
   handleViewAuthor()
   handleEditAuthor()
   handleDeleteAuthor()
+  handleFormValidation()
 })

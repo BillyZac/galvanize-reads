@@ -1,9 +1,9 @@
 <label for="first_name">First name</label>
-<input class="first_name" type="text" name="first_name" placeholder="First name">
+<input class="first_name" type="text" name="first_name" placeholder="First name" required>
 <br>
 <br>
 <label for="last_name">Last name</label>
-<input class="last_name" type="text" name="last_name" placeholder="Last name">
+<input class="last_name" type="text" name="last_name" placeholder="Last name" required>
 <br>
 <br>
 <label for="biography">Biography</label>
@@ -11,7 +11,8 @@
 <br>
 <br>
 <label for="portrait_url">Portrait URL</label>
-<input class="portrait_url" type="text" name="portrait_url" placeholder="Portrait URL">
+<input class="portrait_url" type="url" name="portrait_url" placeholder="Portrait URL" pattern="https?://.+">
 <br>
 <br>
 <button class="add-author" type="button" name="save-edit">Save</button>
+<div class="message"></div>
