@@ -16,7 +16,6 @@ router.get('/', function(req, res) {
   }
   Authors().select().then(function(authors) {
     var length = authors.length
-    console.log('The authors array item 0: ', authors[0])
     res.render('authors', {
       title: "Galvanize Reads",
       authors: authors,
@@ -27,19 +26,26 @@ router.get('/', function(req, res) {
 })
 
 router.post('/', function(req, res) {
-  var data = req.body
-  console.log(data)
+  var author = req.body
+  console.log('Incoming author data on post request: ' + author.first_name)
 
-
-  Authors().insert({
-    first_name: data.first_name,
-    last_name:  data.last_name,
-    biography: data.biography,
-    portrait_url: data.portrait_url
-  }, 'id').then(function(id) {
-    res.send('Created a new author with id ' + id)
-  })
-
+  if (authorDataValid(author)) {
+    //create the new record
+    Authors().insert({
+      first_name: author.first_name,
+      last_name:  author.last_name,
+      biography: author.biography,
+      portrait_url: author.portrait_url
+    }, 'id').then(function(id) {
+      res.send('Created a new author with id ' + id)
+    })
+  } else {
+    // respond with error
+    res.render('error', {
+        message: 'Data is not valid. Name fields cannot be blank. The URL can be blank, but if a url is submitted it must be a proper url.',
+        status: 400
+    })
+  }
 })
 
 router.get('/:id', function(req, res) {
@@ -74,6 +80,8 @@ router.put('/:id', function (req, res){
   }
 })
 
+// I know we have two form validation functions here.
+// At some point, I need to combine the two, or somehow clean it up.
 function formValid(data) {
   for (item in data) {
     console.log(data[item])
@@ -82,6 +90,24 @@ function formValid(data) {
     }
   }
   return true
+}
+
+function authorDataValid(author) {
+  return validateURL(author.portrait_url)
+
+  function validateURL(url) {
+    // If the url is not blank, it must be a valid url.
+    var urlExpression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+    var urlRegex = new RegExp(urlExpression)
+    if (url != '') {
+      if ( !(url.match(urlRegex)) ) {
+        console.log('The URL received is: ' + url)
+        console.log('URL is not valid.')
+        return false
+      }
+    }
+    return true
+  }
 }
 
 router.delete('/:id', function (req, res){
