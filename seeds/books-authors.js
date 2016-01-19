@@ -116,6 +116,9 @@ exports.seed = function(knex, Promise) {
             portrait_url: 'https://s3-us-west-2.amazonaws.com/assessment-images/galvanize_reads/photos/steve_holden.jpg'
           })
       )
+    }).then(function() {
+      return knex.schema.raw('alter sequence books_id_seq restart with 7;')
+      return knex.schema.raw('alter sequence authors_id_seq restart with 9;')
     })
   })
 }
